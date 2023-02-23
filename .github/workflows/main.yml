@@ -3,26 +3,14 @@ name: My Workflow
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   my_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Prompt user for input
-        run: |
-          echo "Do you want to continue?"
-          read -r answer
-          echo "You answered: $answer"
-      - name: Check user input
-        run: |
-          if [[ "$answer" == "yes" ]]; then
-            echo "Continuing the workflow ..."
-          else
-            echo "Stopping the workflow ..."
-            exit 1
-          fi
+      - name: Print input value
+        run: echo "The 'my_input_value' value is ${{ github.event.inputs.my_input_value }}"
       - name: Do something
         run: echo "Doing something ..."
-        
         
