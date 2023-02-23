@@ -1,0 +1,26 @@
+name: My Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prompt user for input
+        run: |
+          echo "Do you want to continue?"
+          read -r answer
+          echo "You answered: $answer"
+      - name: Check user input
+        run: |
+          if [[ "$answer" == "yes" ]]; then
+            echo "Continuing the workflow ..."
+          else
+            echo "Stopping the workflow ..."
+            exit 1
+          fi
+      - name: Do something
+        run: echo "Doing something ..."
